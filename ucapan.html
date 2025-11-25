@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultahnya Guru Terbaik! (Bukan, Hari Guru :p)</title>
+    
+    <!-- Font Keren dari Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ikon Keren dari Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Library Konfeti Biar Meledak-ledak -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* --- STYLE UMUM --- */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Fredoka', sans-serif;
+            overflow: hidden; /* Biar konfetinya nggak bikin scroll */
+        }
+
+        body {
+            /* Background gradasi yang lebih ceria */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- KONTAINER UTAMA (KARTU UCAPAN) --- */
+        .card-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            /* Animasi muncul dengan efek bouncy */
+            animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- FOTO GURU YANG "GEEK" --- */
+        .profile-img-wrapper {
+            display: inline-block;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        /* Efek saat foto di-hover (sedikit miring) */
+        .profile-img:hover {
+            transform: rotateY(10deg) rotateZ(-5deg) scale(1.1);
+        }
+
+        /* --- TEKS UCAPAN YANG GAK FORMAL --- */
+        h1 {
+            color: #e73c7e;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        h2 {
+            color: #23a6d5;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .greeting-text {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* --- TOMBOL SUPER DUPER KEREN --- */
+        .reveal-btn {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .reveal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        /* --- PESAN SPESIAL YANG BIKIN BAPER --- */
+        .special-message {
+            display: none; /* Awalnya diumpetin */
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #fffbe6;
+            border-left: 5px solid #feca57;
+            border-radius: 10px;
+            text-align: left;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .special-message p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #444;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 1em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="profile-img-wrapper">
+            <!-- GANTI 'foto-bapak-yanto.jpg' dengan nama file fotomu -->
+            <img src="./guru.jpg" alt="Foto Bapak Yanto" class="profile-img">
+        </div>
+
+        <h1>Selamat hari guru</h1>
+        <h2>Buat pak Yanto 👨‍🏫</h2>
+
+       <p class="greeting-text">
+  Selamat Hari Guru Pak, maaf ya suka ngerepotin bapak selama kami disini,
+   makasih selalu merhatiin kami selama PKL. Semoga bapak dilancarkan rezeki nya, diberikan kesehatan selalu, dan tidak bosan untuk terus membimbing kami
+    semoga menjadi ladang pahala bagi bapak. Aamiin YarabbalAlamiin🎉🙏
+</p>
+
+
+        <!-- Tombol untuk meledakkan kejutan -->
+        <button class="reveal-btn" onclick="ledakkanKejutan()">
+            <i class="fas fa-bomb"></i> jangan lupa klik ya pak! 
+        </button>
+
+        <!-- Pesan tersembunyi yang bikin baper -->
+        <div id="pesanSpesial" class="special-message">
+            <p>
+               <p>
+    <strong>"Untuk pak Yanto,</strong><br>
+    Terima kasih karena selalu membimbing kami dengan kesabaran dan ketegasan yang membuat kami belajar banyak hal, 
+    bukan hanya soal pekerjaan, tapi juga tentang tanggung jawab dan kedisiplinan.  
+    Kami sangat menghargai setiap waktu dan tenaga yang Bapak luangkan untuk membimbing kami.  
+    Semoga Bapak selalu sehat, dimudahkan rezekinya, dan diberikan keberkahan dalam setiap langkah.  
+    <strong>Terima kasih  Pak 🙏❤️"</strong>
+</p>
+
+            </p>
+        </div>
+
+        <p class="footer">
+            Dari kita angkatan pkl pertama guido techno 🤓
+        </p>
+    </div>
+
+    <script>
+        // Fungsi JavaScript untuk meledakkan kejutan
+        function ledakkanKejutan() {
+            var pesan = document.getElementById('pesanSpesial');
+            var tombol = document.querySelector('.reveal-btn');
+            
+            // Munculin pesan
+            pesan.style.display = 'block';
+            // Sembunyiin tombol biar gak bisa spam klik
+            tombol.style.display = 'none';
+
+            // MELEDAKKAN KONFETI! YASSS!
+            // Konfeti dari kiri bawah
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Konfeti dari kanan bawah, sedikit terlambat biar lebih ramai
+            setTimeout(function() {
+                confetti({
+                    particleCount: 100,
+                    angle: 60,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }, 250);
+
+            // Konfeti dari tengah atas
+            setTimeout(function() {
+                confetti({
+                    particleCount: 150,
+                    spread: 100,
+                    origin: { y: 0.2 }
+                });
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
